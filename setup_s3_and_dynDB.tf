@@ -1,7 +1,11 @@
-i# terraform state file setup
+provider "aws" {
+  region = "us-east-2"
+}
+# terraform state file setup
 # create an S3 bucket to store the state file in
 resource "aws_s3_bucket" "terraform-state-storage-s3" {
   bucket = "jitsi-terraform-state-s3"
+  acl    = "private"
   region = "us-east-2"
 
   versioning {
@@ -13,7 +17,7 @@ resource "aws_s3_bucket" "terraform-state-storage-s3" {
     prevent_destroy = true
   }
 
-  tags {
+  tags = {
     name = "S3 Remote Terraform State Store"
     proj = "jitsi"
     env = "prod"
@@ -32,7 +36,7 @@ resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
     type = "S"
   }
 
-  tags {
+  tags = {
     name = "DynamoDB Terraform State Lock Table"
     proj = "jitsi"
     env = "prod"
