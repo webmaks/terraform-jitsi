@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "terraform-state-storage-s3" {
 
   versioning {
     # enable with caution, makes deleting S3 buckets tricky
-    enabled = false
+    enabled = true
   }
 
   lifecycle {
