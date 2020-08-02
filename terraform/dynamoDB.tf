@@ -1,3 +1,4 @@
+
 # create a DynamoDB table for locking the state file
 resource "aws_dynamodb_table" "dynamodb-terraform-state-lock" {
   name = "jitsi-terraform-state-lock-dynamo"
